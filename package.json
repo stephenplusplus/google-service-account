@@ -1,0 +1,34 @@
+{
+  "name": "google-service-account",
+  "version": "0.0.0",
+  "description": "Create a authorized connection to Google APIs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stephenplusplus/google-service-account"
+  },
+  "keywords": [
+    "google",
+    "cloud",
+    "service",
+    "account"
+  ],
+  "author": "Stephen Sawchuk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stephenplusplus/google-service-account/issues"
+  },
+  "homepage": "https://github.com/stephenplusplus/google-service-account",
+  "dependencies": {
+    "extend": "^2.0.0",
+    "gapitoken": "^0.1.3",
+    "request": "^2.45.0"
+  },
+  "devDependencies": {
+    "mocha": "^1.21.5",
+    "sandboxed-module": "^1.0.2"
+  }
+}
