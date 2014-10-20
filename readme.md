@@ -15,6 +15,7 @@ $ npm install --save google-service-account
 
 ## Use
 > *error handling omitted*
+
 ```js
 var request = require("request")
 
@@ -67,7 +68,7 @@ makeAuthorizedRequest({
 
 ## API
 
-### var authorize = require("google-service-account")(options)([requestOptions])
+### var authorize = require("google-service-account")(options)
 
 #### options
 
@@ -87,12 +88,6 @@ Path to a JSON key file downloaded from the [Google Developers Console][console]
 - Type: `Array`
 
 The scopes your request requires.
-
-#### requestOptions
-- Optional
-- Type: `Object`
-
-Configure a request object. The object given will be extended with the token attached on `obj.headers.Authorization`.
 
 ### authorize([options,] callback)
 - Type: `Function`
