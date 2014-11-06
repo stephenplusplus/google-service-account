@@ -173,7 +173,7 @@ describe("connection", function () {
         requestOverride = function(opts) {
           assert.equal(opts.method.toLowerCase(), "get")
           assert.equal(opts.uri, "http://metadata/computeMetadata/v1/instance/service-accounts/default/token")
-          assert.equal(opts.headers["X-Google-Metadata-Request"], "True")
+          assert.equal(opts.headers["Metadata-Flavor"], "Google")
           assert.strictEqual(opts.json, true)
           done()
         }

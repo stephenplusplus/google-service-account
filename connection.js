@@ -82,7 +82,7 @@ Connection.prototype.fetchToken = function (callback) {
       method: "get",
       uri: METADATA_TOKEN_URL,
       headers: {
-        "X-Google-Metadata-Request": "True"
+        "Metadata-Flavor": "Google"
       },
       json: true
     }, function (err, res, body) {
