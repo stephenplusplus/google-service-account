@@ -1,6 +1,6 @@
 {
   "name": "google-service-account",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Create a authorized connection to Google APIs.",
   "main": "index.js",
   "scripts": {
