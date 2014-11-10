@@ -3,7 +3,7 @@
 var events = require("events")
 var extend = require("extend")
 var fs = require("fs")
-var GAPIToken = require("gapitoken")
+var GoogleToken = require("gtoken")
 var request = require("request")
 var Token = require("./token")
 var util = require("util")
@@ -62,17 +62,16 @@ Connection.prototype.createAuthorizedRequest = function (requestOptions, callbac
 }
 
 Connection.prototype.fetchServiceAccountToken = function (callback) {
-  var gapi = new GAPIToken({
+  var gtoken = new GoogleToken({
     iss: this.credentials.client_email,
     key: this.credentials.private_key,
-    scope: this.scopes.join(" ")
-  }, function (err) {
+    scope: this.scopes
+  })
+
+  gtoken.getToken(function (err, token) {
     if (err) return callback(err)
-    gapi.getToken(function (err, token) {
-      if (err) return callback(err)
-      var exp = new Date(gapi.token_expires * 1000)
-      callback(null, new Token(token, exp))
-    })
+    var exp = new Date(gtoken.expires_at)
+    callback(null, new Token(token, exp))
   })
 }
 

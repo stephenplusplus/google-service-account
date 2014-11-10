@@ -4,13 +4,13 @@ var assert = require("assert")
 var mocha = require("mocha")
 var sandbox = require("sandboxed-module")
 
-var GAPITokenOverride
+var GoogleTokenOverride
 var requestOverride
 var Connection = sandbox.require("./connection", {
   requires: {
-    gapitoken: function () {
-      (GAPITokenOverride || require("gapitoken")).apply(this, [].slice.call(arguments))
-      GAPITokenOverride = null
+    gtoken: function () {
+      (GoogleTokenOverride || require("gtoken")).apply(this, [].slice.call(arguments))
+      GoogleTokenOverride = null
     },
     request: function () {
       (requestOverride || require("request")).apply(this, [].slice.call(arguments))
@@ -137,19 +137,20 @@ describe("connection", function () {
       })
     })
 
-    it("should construct a gapi token object", function (done) {
-      GAPITokenOverride = function (opts) {
+    it("should construct a gtoken object", function (done) {
+      GoogleTokenOverride = function (opts) {
+        this.getToken = function() {}
         assert.equal(opts.iss, credentials.client_email)
         assert.equal(opts.key, credentials.private_key)
-        assert.equal(opts.scope, scopes.join(" "))
+        assert.equal(opts.scope, scopes)
         done()
       }
 
       conn.fetchServiceAccountToken()
     })
 
-    it("should execute callback with a gapi token", function (done) {
-      GAPITokenOverride = function (opts, cb) {
+    it("should execute callback with a gtoken", function (done) {
+      GoogleTokenOverride = function (opts, cb) {
         this.getToken = function (cb) {
           cb(null, {
             access_token: token,
